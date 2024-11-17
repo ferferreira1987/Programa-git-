@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+function leerVectores() {
+  let vector1 = [];
+  let vector2 = [];
+
+  
+  console.log("Ingrese 5 números enteros en orden ascendente para el primer vector:");
+  for (let i = 0; i < 5; i++) {
+    let num = parseInt(prompt(`Número ${i + 1}:`));
+    if (i > 0 && num <= vector1[i - 1]) {
+      console.log("Los números deben estar en orden ascendente. Inténtalo de nuevo.");
+      return null;
+    }
+    vector1.push(num);
+  }
+
+ 
+  console.log("Ingrese 5 números enteros en orden ascendente para el segundo vector:");
+  for (let i = 0; i < 5; i++) {
+    let num = parseInt(prompt(`Número ${i + 1}:`));
+    if (i > 0 && num <= vector2[i - 1]) {
+      console.log("Los números deben estar en orden ascendente. Inténtalo de nuevo.");
+      return null;
+    }
+    vector2.push(num);
+  }
+
+  return [vector1, vector2];
+}
+
+
+function mezclarVectores(vector1, vector2) {
+  let vectorMezclado = [];
+  let i = 0, j = 0;
+
+ 
+  while (i < vector1.length && j < vector2.length) {
+    if (vector1[i] < vector2[j]) {
+      vectorMezclado.push(vector1[i]);
+      i++;
+    } else {
+      vectorMezclado.push(vector2[j]);
+      j++;
+    }
+  }
+
+  
+  while (i < vector1.length) {
+    vectorMezclado.push(vector1[i]);
+    i++;
+  }
+
+ 
+  while (j < vector2.length) {
+    vectorMezclado.push(vector2[j]);
+    j++;
+  }
+
+  return vectorMezclado;
+}
+
+
+let vectores = leerVectores();
+if (vectores) {
+  let [vector1, vector2] = vectores;
+  let vectorMezclado = mezclarVectores(vector1, vector2);
+  console.log("La lista ordenada de la mezcla de los dos vectores es:");
+  console.log(vectorMezclado.join(" "));
+}
+</script>  
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+ 
+ <script>
+   const TAMANIO_VECTOR = 10;
+
+
+let edades = new Array(TAMANIO_VECTOR);
+
+
+function validarEdad(edad) {
+  return edad >= 1 && edad <= 120;
+}
+
+
+function ingresarEdades() {
+  for (let i = 0; i < TAMANIO_VECTOR; i++) {
+    let edad;
+    do {
+      edad = parseInt(prompt(`Ingrese la edad de la persona ${i + 1}:`));
+      if (!validarEdad(edad)) {
+        alert("La edad debe estar entre 1 y 120 años. Intente de nuevo.");
+      }
+    } while (!validarEdad(edad));
+    edades[i] = edad;
+  }
+}
+
+
+function contarMenoresDeEdad() {
+  let contador = 0;
+  for (let i = 0; i < TAMANIO_VECTOR; i++) {
+    if (edades[i] < 18) {
+      contador++;
+    }
+  }
+  return contador;
+}
+
+
+function contarMayoresDeEdad() {
+  let contador = 0;
+  for (let i = 0; i < TAMANIO_VECTOR; i++) {
+    if (edades[i] >= 18) {
+      contador++;
+    }
+  }
+  return contador;
+}
+
+
+function contarAdultosMayores() {
+  let contador = 0;
+  for (let i = 0; i < TAMANIO_VECTOR; i++) {
+    if (edades[i] >= 60) {
+      contador++;
+    }
+  }
+  return contador;
+}
+
+
+function calcularEdadMasBaja() {
+  let edadMasBaja = edades[0];
+  for (let i = 1; i < TAMANIO_VECTOR; i++) {
+    if (edades[i] < edadMasBaja) {
+      edadMasBaja = edades[i];
+    }
+  }
+  return edadMasBaja;
+}
+
+
+function calcularEdadMasAlta() {
+  let edadMasAlta = edades[0];
+  for (let i = 1; i < TAMANIO_VECTOR; i++) {
+    if (edades[i] > edadMasAlta) {
+      edadMasAlta = edades[i];
+    }
+  }
+  return edadMasAlta;
+}
+
+
+function calcularPromedioEdades() {
+  let suma = 0;
+  for (let i = 0; i < TAMANIO_VECTOR; i++) {
+    suma += edades[i];
+  }
+  return suma / TAMANIO_VECTOR;
+}
+
+
+ingresarEdades();
+
+console.log("Edades ingresadas:", edades);
+console.log("Menores de edad:", contarMenoresDeEdad());
+console.log("Mayores de edad:", contarMayoresDeEdad());
+console.log("Adultos mayores:", contarAdultosMayores());
+console.log("Edad más baja:", calcularEdadMasBaja());
+console.log("Edad más alta:", calcularEdadMasAlta());
+console.log("Promedio de edades:", calcularPromedioEdades());
+ </script>  
+</body>
+</html>
